@@ -1,36 +1,116 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    @using Microsoft.AspNetCore.Identity
+    @using Models;
+    @using Microsoft.AspNetCore.Identity
+    @inject SignInManager<AppUser> SignInManager
+    @inject UserManager<AppUser> UserManager
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Picsarty</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Picsarty.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Index.css" />
+    <link rel="stylesheet" href="~/css//Nav.css" />
+    <link rel="stylesheet" href="~/css/Create.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/css/multi-select-tag.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/0.11.1/typeahead.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.jquery.min.js"></script>
+    
+    <link href="~/css//Qeury.css" rel="Stylesheet">
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Picsarty</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white mb-3">
+            <div class="Nav_conatiner" style=""  >
+                <div class="Icon_Sector" style="width:40px"  > 
+                    <img src="~/Images/PageIcon.jfif" width="100%" style="border-radius:50%" />
                 </div>
+                <div  class="HomeBut" >
+                    <a asp-area="R_User" asp-action="Index" asp-controller="Home" class="btn btn-dark" style="color:white; border-radius:30px; padding-left:0; ; padding:10px;  " >
+                        Home
+                    </a>
+                </div>
+                <div class="ExploreSection" style=" padding:10px;3px;">
+
+                    <a  style="text-decoration:none;  color:black; ">
+                        Explore
+                    </a>
+
+                </div>
+                <div class="Create_tag" style="padding:10px;   ">
+
+                    <a asp-action="Index" asp-controller="Create"  style="text-decoration:none; color:black;   ">
+                        Create
+                    </a>
+                    
+                </div>
+                <div style="50%" class="Search_bar_Nav" style="padding:10px;">
+                    <input type="text" />
+                    <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg>
+    
+                </div>
+                @if(SignInManager.IsSignedIn(User)){ 
+                <div class="Notlification" style="padding:3px; ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
+                    </svg>
+
+                </div>
+                <div class="Chat_icon" style="padding:10px;">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
+                        <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15" />
+                    </svg>
+
+                </div>
+                <div class="Profile_Pic_icon" style="padding:10px">
+                    
+                        <a class="text-dark p-1 nav-link" asp-area="Identity" asp-page="/Account/Manage/Index   "> @Char.ToUpper(UserManager.GetUserName(User)[0]) </a>
+                    
+                  
+                    
+                </div>
+                <div class="dropdown_nav" style="padding:10px;margin-left:30px">
+                    <button>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+                            <path d="M3.204 5h9.592L8 10.481zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659" />
+                        </svg>
+
+                    </button>
+                    <div class="dropdown_nav_content" style="padding:10px;">
+
+                        <a href="#"> Settings </a>
+                        <a href="#" >Home feed tuner</a>
+                        <a href="#" > Report and Violations Center  </a>
+                        <a href="#" > Your privacy rights </a>
+                        <a href="#" > Teen Safety Resources </a>
+                           <a asp-area="Identity" asp-page="/Account/Logout"> Log out </a>
+                    </div>
+                    
+                </div>
+                }
+                else
+                {
+                    <a onclick="Sign_up_click()" class="text-dark p-1 nav-link poin " style="cursor:pointer "> Register </a>
+                    <a onclick="Sign_in_click()" class="text-dark p-1 nav-link poin " style="cursor:pointer "> Login </a>
+                }
+                
+
+
             </div>
         </nav>
     </header>
+    
     <div class="container">
+      
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -41,9 +121,9 @@
             &copy; 2024 - Picsarty - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

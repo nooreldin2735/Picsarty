@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Catergory>
+
+
+
+<div class="Category_select" id="Category_select">
+<div class="PopUP">
+
+    <div class="Icon_Sector" style="width:10%;margin:0 auto;display:flex;">
+        <img src="~/Images/PageIcon.jfif" width="60%" style="border-radius:50%" />
+    </div>
+    <h3 style=" padding:3px; "> Welcom to picsy art </h3>
+    <div class="Form_sign_inConatiner">
+
+        <form method="post" action="@Url.Action("Category_add","Home")" style="display:flex;align-items:center; flex-direction:column;">
+            <select   name="Categories_select" id="Categories" multiple>
+                    @foreach(var category in Model)
+                    {
+                        <option   value="@category.Catergory_id" >@category.Catergory_name</option>
+                    }
+
+            </select>
+                <button class="Sign_button"> Submit </button>
+        </form>
+
+    </div>
+</div>
+</div>
+
+
+</div>
+<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/js/multi-select-tag.js"></script>
+<script>
+    new MultiSelectTag('Categories')  // id
+</script>

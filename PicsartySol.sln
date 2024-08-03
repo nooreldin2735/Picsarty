@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Picsarty", "Picsarty\Picsar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{129103D6-37CA-435B-94D0-47E317D54A85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{BC1E446E-3BC6-4CF7-B283-DF54DA82BCB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{129103D6-37CA-435B-94D0-47E317D54A85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{129103D6-37CA-435B-94D0-47E317D54A85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{129103D6-37CA-435B-94D0-47E317D54A85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC1E446E-3BC6-4CF7-B283-DF54DA82BCB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1E446E-3BC6-4CF7-B283-DF54DA82BCB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC1E446E-3BC6-4CF7-B283-DF54DA82BCB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC1E446E-3BC6-4CF7-B283-DF54DA82BCB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
