@@ -1,0 +1,35 @@
+﻿body{
+    padding:0;
+}
+.main_container_body_create{
+    display:flex;
+    justify-content:space-between;
+    width:75%;
+    margin:0 auto;
+}
+.Lpc {
+    margin-top: 50px;
+    width:200px;
+    w
+    
+}
+.Rpc {
+    margin-top: 50px;
+    width: 500px;
+}
+input[type="file"] {
+    display: none;
+}
+.Label_container {
+    display: flex;
+    background-color: rgb(243, 243, 243);
+    cursor: pointer;
+    justify-content:center;
+    text-align: center;
+    align-items: center;
+    padding: 3%;
+    border: thin solid black;
+    width: 120%;
+    border-radius: 30px;
+    height: 350px;
+}

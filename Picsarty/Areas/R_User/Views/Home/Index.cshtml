@@ -1,0 +1,139 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model UserOPModel
+ 
+<div asp-validation-summary="ModelOnly"></div>
+<div asp-validation-summary="All"></div>
+<div class="main_container_body" id="main_container_body">
+    @foreach(var post in Model.posts){
+        <div class="main_body_image" onclick=' console.log(" done");
+             window.location.href= "@Url.Action("post", "Home", new { id = post.Post_id })" ;'>
+        <img src="@post.picture.Location" width="80%" />
+        @if(post.Post_title.Length>20){
+                <p style="font-size:15px;font-weight:bold;" >@string.Concat(@post.Post_title.Substring(0,32),"...")</p>
+            }
+            else
+            {
+                <p style="font-size:15px;font-weight:bold;">@post.Post_title</p>
+            }
+            @if (post.Description.Length > 20)
+            {
+                <p>@string.Concat(@post.Description.Substring(0, 20), "...")</p>
+            }
+            else
+            {
+                <p>@post.Description</p>
+            }
+            <script>
+                function Redirecttopost() {
+                   
+
+                }
+            </script>
+    </div>
+    }
+   
+</div>
+<div class="Sign_in_contatiner" id="Sign_in_contatiner">
+
+    <div class="PopUP">
+
+        <div class="Icon_Sector" style="width:10%;margin:0 auto;display:flex;">
+            <img src="~/Images/PageIcon.jfif" width="60%" style="border-radius:50%" />
+            <svg  onclick="ReturnToHome()" style="position:absolute; right:35px; cursor:pointer;  "  xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+            </svg>
+        </div>
+        <h3 style=" padding:3px; "> Welcom to picsy art </h3>
+        <div  class="Form_sign_inConatiner" >
+
+            <form method="post" action="@Url.Action("Login","Home")"  style="display:flex;align-items:center; flex-direction:column;">
+                <div class="form_input" >
+                    <label asp-for="LoginVm.UserName" for="UserName">UserName</label>
+                    <input asp-for="LoginVm.UserName" id="UserName" type="text" />
+                </div>
+                <div class="form_input">
+                    <label asp-for="LoginVm.Password" for="Password">Password</label>
+                    <input asp-for="LoginVm.Password" id="Password" type="password" />
+                </div>
+                <span style="display:flex; font-weight:100 "><p>Not a member?</p><a onclick="Sign_up_click()" style="margin-left:5px;font-weight:600;cursor:pointer "> sign Up</a></span>
+                <button  class="Sign_button"> Submit </button>
+                
+            </form>
+            
+        </div>
+    </div>
+    
+    
+
+</div>
+@if (TempData["FirstTime"] !=null)
+{
+    <partial name="CategroiesSelection" model="@Model.catergories" />
+}
+
+<div class="Sign_up_contatiner" id="Sign_up_contatiner">
+
+    <div class="PopUP">
+
+        <div class="Icon_Sector" style="width:10%;margin:0 auto;display:flex;">
+            <img src="~/Images/PageIcon.jfif" width="60%" style="border-radius:50%" />
+            <svg onclick="ReturnToHome()" style="position:absolute; right:35px; cursor:pointer;  " xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+            </svg>
+        </div>
+        <h3 style=" padding:3px; "> Welcom to picsy art </h3>
+        <div class="Form_sign_inConatiner">
+
+            <form method="post" action="@Url.Action("Signup","Home")" style="display:flex;align-items:center; flex-direction:column;">
+                <div class="form_input">
+                    <label asp-for="@Model.registerVm.UserName" for="UserName">UserName</label>
+                    <input asp-for="@Model.registerVm.UserName" id="UserName" type="text" />
+                </div>
+                <div class="form_input">
+                    <label asp-for="@Model.registerVm.Password" for="Password">Password</label>
+                    <input asp-for="@Model.registerVm.Password" id="Password" type="password" />
+                </div>
+                <div class="form_input">
+                    <label asp-for="@Model.registerVm.Email" for="Email">Email</label>
+                    <input asp-for="@Model.registerVm.Email" id="Email" type="email" />
+                </div>
+                <div class="form_input">
+                    <label asp-for="@Model.registerVm.BDate" for="Birthday">Birthday</label>
+                    <input asp-for="@Model.registerVm.BDate" id="Birthday" type="date" value="2024/3/27" />
+                </div>
+                @if (TempData["Errors"] != null)
+                {
+                    string x = TempData["Errors"].ToString();
+                    @foreach (var err in x.Split(';'))
+                    {
+                        <ul>
+                            <li style="color:red" >@err</li>
+                        </ul>
+                      
+                    }
+                    <style>
+                        .Sign_up_contatiner {
+                            height: 650px;
+                            top: 10%; 
+                            display:flex;
+                        }
+
+                        .main_container_body{
+                            opaticy:0.8;
+                            filter:brightness('0.5');
+                        }
+
+                        
+                    </style>
+                    
+                }
+                <span style="display:flex; font-weight:100 "><p>already a member?</p><a onclick="Sign_in_click()"  style="margin-left:5px;font-weight:600;cursor:pointer "> sign In</a></span>
+                
+                <button class="Sign_button"> Submit </button>
+
+            </form>
+
+        </div>
+    </div>

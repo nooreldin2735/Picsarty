@@ -1,0 +1,70 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@model Create_postVm
+<style>
+    .Create_tag {
+        background-color:black;
+        border-radius:30px;
+    }
+    .Create_tag a{
+        color:white !important ; 
+    }
+
+
+    .HomeBut a {
+        background-color:transparent !important ;
+        color: black !important;
+        border-radius:0px !important;
+        border:none;
+
+    }
+</style>
+<div class="Create_bin" style=";border-bottom:thin solid black;width:100%;">
+    <h1>Create Pin</h1>
+</div>
+<form enctype="multipart/form-data" style="display:flex; flex-direction:column" action="@Url.Action("Insert","Create")" method="post" >
+<div class="main_container_body_create"  >
+
+    <div class="Lpc" style="width:200px;" >
+        <label class="Label_container" for="inputTag">
+            Select Image Or drag it here
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1" />
+            </svg>
+            <input id="inputTag" type="file" name="file" />
+        </label>
+    </div>
+    <div class="Rpc">
+        <div class="form_input">
+            <label asp-for="post.Post_title" for="Title">Title</label>
+                <input asp-for="post.Post_title" id="Title" type="text" style="width:600px" />
+        </div>
+      
+        <div class="form_input">
+            <label asp-for="post.Description"  for="Description">Description </label>
+                <input asp-for="post.Description" id="Description" type="text" style="width:600px;padding-bottom:100px;" />
+        </div>
+        <div class="form_input">
+            <label asp-for="post.Link" for="Link">Link</label>
+                <input asp-for="post.Link" id="Link" type="text" style="width:600px" />
+        </div>
+        <div class="form_input">
+                <label for="Ids">Category</label>
+                <select style="border-radius:30px;" asp-items="ViewBag.Categoriess" multiple="multiple"  name="Category_selectors" id="Category_selectors_id">
+                   
+                </select>
+        </div>
+    </div>
+
+</div>
+    <button class="Sign_button" style="margin:50px auto"> Submit </button>
+</form>
+<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/js/multi-select-tag.js"></script>
+<script>
+    new MultiSelectTag('Category_selectors_id')  // id
+</script>
